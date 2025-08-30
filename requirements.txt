@@ -1,1 +1,4 @@
-Flask==3.0.0
+Flask==3.0.0          # mantenha se quiser continuar rodando o Flask também
+streamlit==1.37.1
+pandas==2.2.2
+requests==2.32.3
