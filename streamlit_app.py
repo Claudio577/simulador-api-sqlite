@@ -20,7 +20,8 @@ def fetch_dump(api, tok):
 
 def df_from_path(dump, path):
     obj = dump.get("data", {})
-    for p in path.split("."): obj = obj.get(p, {})
+    for p in path.split("."):
+        obj = obj.get(p, {})
     return pd.DataFrame(obj) if isinstance(obj, list) else pd.DataFrame()
 
 def filter_df(df, term):
