@@ -13,6 +13,14 @@ def q(sql, params=()):
     con.close()
     return rows
 
+@app.after_request
+def no_cache(resp):
+    resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    resp.headers["Pragma"] = "no-cache"
+    # Se for consumir a API de outro domínio, destrave CORS:
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+
 @app.get("/dump")
 def dump():
     associates     = q("SELECT * FROM associates ORDER BY associate_id")
@@ -54,6 +62,11 @@ def index():
 def static_files(path):
     return send_from_directory(app.static_folder, path)
 
+@app.get("/healthz")
+def healthz():
+    return {"ok": True}
+
 if __name__ == "__main__":
-    # Rode:  python app.py  → depois abra http://localhost:5000  e  /dump
-    app.run(host="0.0.0.0", port=5000)
+    # Porta dinâmica para plataformas (Render/Heroku/etc.)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
