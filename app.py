@@ -68,5 +68,5 @@ def healthz():
 
 if __name__ == "__main__":
     # Porta dinâmica para plataformas (Render/Heroku/etc.)
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5001)))
 
