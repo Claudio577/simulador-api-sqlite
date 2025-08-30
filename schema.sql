@@ -68,3 +68,4 @@ CREATE INDEX IF NOT EXISTS idx_payments_invoice    ON payments(invoice_id);
 CREATE INDEX IF NOT EXISTS idx_payments_date       ON payments(date);
 CREATE INDEX IF NOT EXISTS idx_reg_event           ON registrations(event_id);
 CREATE INDEX IF NOT EXISTS idx_reg_associate       ON registrations(associate_id);
+
